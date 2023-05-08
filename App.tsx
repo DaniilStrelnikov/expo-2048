@@ -1,20 +1,22 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { SafeAreaView, View } from "react-native";
+import { Text, TextType } from "./components/Text/Text";
+import { Game } from "./components/Game/Game";
+import { Provider } from "react-redux";
+import { store } from "./components/Redux/store";
+import { Footer } from "./components/Footer/Footer";
+import style from "./style";
 
 export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
+	return (
+		<Provider store={store}>
+			<SafeAreaView style={style.safeArea}>
+				<View style={style.container}>
+					<Text type={TextType.header}>2048</Text>
+				</View>
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+				<Game />
+				<Footer />
+			</SafeAreaView>
+		</Provider>
+	);
+}
